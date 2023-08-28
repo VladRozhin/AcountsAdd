@@ -47,6 +47,7 @@ let accountNumber = 0;
 let pagesNumber;
 let step = 1;
 let page;
+let list = 10;
 
 //кнопка добавить 
 formButton.addEventListener("click", (event) => {
@@ -67,7 +68,7 @@ formButton.addEventListener("click", (event) => {
         divNull.appendChild(buttonDel);
         buttonDelAll[accountNumber] = buttonDel; 
         buttonEditAll[accountNumber] = buttonEdit;
-        page = accountAll.slice(0,3);
+        page = accountAll.slice(0,list);
         accountContainer.innerHTML = page.map((item) => `<li class="acc">${item.innerHTML}</li>`).join('');
         
     } else {
@@ -88,7 +89,7 @@ formButton.addEventListener("click", (event) => {
     buttonDelAll.push(buttonDel); 
     buttonEditAll.push(buttonEdit);
     containerInput.push(inputAllValue);
-    page = accountAll.slice(0,3);
+    page = accountAll.slice(0,list);
     accountContainer.innerHTML = page.map((item) => `<li class="acc">${item.innerHTML}</li>`).join('');
     }
    
@@ -98,7 +99,7 @@ formButton.addEventListener("click", (event) => {
         const deletes = document.querySelectorAll(".delete")
 
     //Пагинация
-    pagesNumber = Math.ceil(accountAll.length / 3);
+    pagesNumber = Math.ceil(accountAll.length / list);
 
     if(step === pagesNumber) {
         step = step + 1;
@@ -110,7 +111,7 @@ formButton.addEventListener("click", (event) => {
     }
     for(let i = 0; i < paginationButtonAll.length; i++) {
         paginationButtonAll[i].addEventListener("click", () => {
-            page = accountAll.slice(i * 3,(i + 1) * 3);
+            page = accountAll.slice(i * list,(i + 1) * list);
             accountContainer.innerHTML = page.map((item) => `<li class="acc">${item.innerHTML}</li>`).join('');
         });
     }
